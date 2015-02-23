@@ -5,7 +5,7 @@
 // @match http://www.gefs-online.com/gefs.php*
 // @match http://gefs-online.com/gefs.php*
 // @run-at document-end
-// @version 0.1.0
+// @version 0.1.1
 // @grant none
 // ==/UserScript==
 
@@ -13,10 +13,10 @@
   // check if ges.init has already been called
   if (window.ges && ges.map3d) fn();
   else {
-    var oldInit = ges.init;
     var timer = setInterval(function () {
       if (window.ges && ges.init) {
         clearInterval(timer);
+        var oldInit = ges.init;
         ges.init = function () {
           fn();
           oldInit();
